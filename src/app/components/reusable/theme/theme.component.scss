@@ -1,0 +1,174 @@
+/* theme.component.scss */
+
+/* Circle button wrapper */
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+
+  /* Light mode styling */
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border-color: #e2e8f0;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+  /* Hover effects */
+  &:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 
+      0 8px 25px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  /* Dark mode active state */
+  &.active {
+    background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+    border-color: #4a5568;
+    box-shadow: 
+      0 4px 20px rgba(0, 0, 0, 0.3),
+      0 0 20px rgba(254, 202, 62, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+    &:hover {
+      box-shadow: 
+        0 8px 30px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(254, 202, 62, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+/* The bulb SVG inside */
+.bulb-icon {
+  width: 32px;
+  height: 32px;
+  transition: all 0.4s ease;
+
+  /* Bulb filament */
+  .filament {
+    fill: #64748b; // Gray when off
+    transition: all 0.4s ease;
+  }
+
+  /* Bulb base and threads */
+  .bulb-base {
+    fill: #475569;
+    transition: all 0.4s ease;
+  }
+
+  .bulb-threads {
+    fill: #64748b;
+    transition: all 0.4s ease;
+  }
+
+  /* Light rays (hidden by default) */
+  .light-rays {
+    fill: #64748b;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.4s ease;
+  }
+}
+
+/* Active state (dark mode on) - glowing bulb */
+.theme-toggle.active .bulb-icon {
+  .filament {
+    fill: #feca3e; // Warm yellow glow
+    filter: 
+      drop-shadow(0 0 4px rgba(254, 202, 62, 0.8)) 
+      drop-shadow(0 0 8px rgba(254, 202, 62, 0.6))
+      drop-shadow(0 0 12px rgba(254, 202, 62, 0.4));
+  }
+
+  .bulb-base {
+    fill: #e2e8f0; // Lighter base when on
+  }
+
+  .bulb-threads {
+    fill: #cbd5e0; // Lighter threads when on
+  }
+
+  .light-rays {
+    fill: #feca3e;
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 0 2px rgba(254, 202, 62, 0.6));
+  }
+}
+
+/* Add a subtle animation to the rays when active */
+.theme-toggle.active .light-rays {
+  animation: rayGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes rayGlow {
+  0% {
+    opacity: 0.7;
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.02) rotate(1deg);
+  }
+}
+
+/* Mobile adjustment */
+@media (max-width: 768px) {
+  .theme-toggle {
+    bottom: 70px; // Move it higher on mobile
+    width: 55px;
+    height: 55px;
+
+    .bulb-icon {
+      width: 28px;
+      height: 28px;
+    }
+  }
+}
+
+/* Focus states for accessibility */
+.theme-toggle:focus {
+  outline: none;
+  box-shadow: 
+    0 0 0 3px rgba(59, 130, 246, 0.5),
+    0 4px 15px rgba(0, 0, 0, 0.08);
+
+  &.active {
+    box-shadow: 
+      0 0 0 3px rgba(254, 202, 62, 0.5),
+      0 4px 20px rgba(0, 0, 0, 0.3),
+      0 0 20px rgba(254, 202, 62, 0.3);
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle,
+  .bulb-icon,
+  .filament,
+  .bulb-base,
+  .bulb-threads,
+  .light-rays {
+    transition: none;
+  }
+
+  .light-rays {
+    animation: none;
+  }
+}

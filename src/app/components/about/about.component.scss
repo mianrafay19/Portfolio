@@ -1,0 +1,210 @@
+@use "../../styles/imports" as *;
+
+.about-section {
+  font-family: $font-family-primary;
+  @extend %section-layout;
+  @include section-mobile-adjustments;
+}
+
+.about-container {
+  @extend %section-container;
+  animation: slideInUp 0.8s ease-out;
+}
+
+// .about-card {
+//   @extend %main-card;
+// }
+
+/* Story Section */
+.story-section {
+  text-align: center;
+  animation: slideInUp 0.8s ease-out 0.2s both;
+
+  .story-header {
+    margin-bottom: $spacing-lg;
+
+    .profile-name {
+      font-size: $h2-font-size;
+      font-weight: 800;
+      margin-bottom: $spacing-xs;
+      background: $gradient-main;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: slideInLeft 0.7s ease-out 0.3s both;
+    }
+
+    .profile-role {
+      font-size: 1.25rem;
+      color: $text-color-primary;
+      font-weight: 600;
+      animation: slideInRight 0.7s ease-out 0.4s both;
+    }
+  }
+
+  .story-text {
+    color: $text-color-secondary;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    margin-bottom: $spacing-xl;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: slideInUp 0.8s ease-out 0.5s both;
+  }
+}
+
+/* Passions Grid */
+.passions-grid {
+  display: grid;
+  gap: $spacing-lg;
+  animation: slideInUp 0.8s ease-out 0.4s both;
+
+  @include tablet-up-adjustments {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+.passion-item {
+  display: flex;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  border-radius: 16px;
+  background: rgba(var(--primary-color-rgb), 0.02);
+  border: 1px solid $card-border;
+  animation: slideInLeft 0.6s ease-out calc(var(--item-index, 0) * 0.1s + 0.5s) both;
+
+  &:hover {
+    transform: translateY(-2px);
+    background: rgba(var(--primary-color-rgb), 0.05);
+    box-shadow: $card-shadow;
+  }
+
+  .passion-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    i {
+      font-size: 1.5rem;
+      color: white;
+    }
+  }
+
+  // Individual passion icon backgrounds
+  &[data-key="architecture"] .passion-icon {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  &[data-key="innovation"] .passion-icon {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  }
+
+  &[data-key="ux"] .passion-icon {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  }
+
+  &[data-key="problem-solving"] .passion-icon {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  }
+
+  .passion-content {
+    h4 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: $text-color-primary;
+      margin-bottom: $spacing-xs;
+      animation: slideInRight 0.5s ease-out 0.2s both;
+    }
+
+    p {
+      color: $text-color-secondary;
+      line-height: 1.6;
+      font-size: 1rem;
+      animation: slideInUp 0.5s ease-out 0.3s both;
+    }
+  }
+
+  @include mobile-adjustments {
+    flex-direction: column;
+    text-align: center;
+
+    .passion-icon {
+      align-self: center;
+    }
+  }
+}
+
+/* Personal Content */
+.personal-content {
+  display: grid;
+  gap: $spacing-xl;
+  animation: slideInUp 0.8s ease-out 0.6s both;
+}
+
+.section-subtitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: $primary-color;
+  margin-bottom: $spacing-md;
+  text-align: center;
+  animation: slideInLeft 0.6s ease-out 0.3s both;
+}
+
+.interests-section {
+  animation: slideInRight 0.7s ease-out 0.5s both;
+
+  .interests-grid {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    align-items: center;
+  }
+
+  .interest-tag {
+    background: $gradient-main;
+    color: white;
+    padding: $spacing-sm $spacing-md;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    animation: slideInUp 0.5s ease-out calc(var(--tag-index, 0) * 0.1s + 0.7s) both;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+}
+
+.languages-section {
+  animation: slideInLeft 0.7s ease-out 0.6s both;
+
+  .languages-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+    justify-content: center;
+  }
+
+  .language-tag {
+    background: var(--card-bg);
+    border: 2px solid $card-border;
+    color: $text-color-primary;
+    padding: $spacing-sm $spacing-md;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    animation: slideInRight 0.5s ease-out calc(var(--lang-index, 0) * 0.1s + 0.8s) both;
+
+    &:hover {
+      border-color: $primary-color;
+      transform: translateY(-2px);
+    }
+  }
+}
+

@@ -1,0 +1,240 @@
+@use "../../styles/imports" as *;
+
+.contact-section {
+  padding: $spacing-xl 0;
+  background: $background-color-light;
+  position: relative;
+  overflow: hidden;
+  font-family: $font-family-primary;
+
+  // Subtle decorative background elements
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at 30% 40%,
+        rgba($primary-color, 0.03) 0%,
+        transparent 25%
+      ),
+      radial-gradient(
+        circle at 70% 60%,
+        rgba($accent-color, 0.03) 0%,
+        transparent 25%
+      );
+    z-index: 0;
+  }
+
+  @include desktop-adjustments {
+    padding: $spacing-lg 0;
+  }
+
+  @include mobile-adjustments {
+    padding: $spacing-lg $spacing-sm;
+  }
+}
+
+.contact-container {
+  max-width: $breakpoint-large;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+  position: relative;
+  z-index: 1;
+
+  @include mobile-adjustments {
+    padding: 0 $spacing-sm;
+  }
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: $spacing-xl;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include mobile-adjustments {
+    margin-bottom: $spacing-lg;
+  }
+}
+
+.section-description {
+  color: $text-color-secondary;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: $spacing-lg;
+
+  @include desktop-adjustments {
+    font-size: 1.1rem;
+  }
+
+  @include mobile-adjustments {
+    font-size: 1rem;
+  }
+}
+
+.contact-form-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  background: $card-bg;
+  border-radius: 16px;
+  box-shadow: $card-shadow;
+  border: 1px solid $card-border;
+  overflow: hidden;
+
+  @include tablet-adjustments {
+    border-radius: 12px;
+    margin-bottom: $spacing-lg; // adjust spacing as needed
+  }
+
+  @include mobile-adjustments {
+    border-radius: 8px;
+    margin: 0 auto;
+    margin-bottom: $spacing-lg; // adjust spacing as needed
+  }
+}
+
+.contact-form {
+  padding: $spacing-xl;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  position: relative;
+
+  // Subtle pattern overlay
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba($card-bg, 0.95), rgba($card-bg, 0.95)),
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba($primary-color, 0.01) 10px,
+        rgba($primary-color, 0.01) 20px
+      );
+    z-index: 0;
+  }
+
+  @include tablet-adjustments {
+    padding: $spacing-lg;
+    gap: $spacing-md;
+  }
+
+  @include mobile-adjustments {
+    padding: $spacing-lg $spacing-md;
+    gap: $spacing-md;
+  }
+}
+
+.form-group {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.form-group label {
+  color: $text-color-primary;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: $spacing-xs;
+  position: static;
+  transform: none;
+  background: transparent;
+  padding: 0;
+
+  @include mobile-adjustments {
+    font-size: 0.95rem;
+  }
+}
+
+.form-input {
+  width: 100%;
+  padding: $spacing-md;
+  font-size: 1rem;
+  color: $text-color-primary;
+  background: $background-color-light;
+  border: 2px solid $border-color;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  resize: vertical;
+  font-family: $font-family-primary;
+
+  &::placeholder {
+    color: $text-color-secondary;
+    opacity: 0.8;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $text-color-primary;
+    box-shadow: 0 0 0 3px rgba($text-color-primary, 0.1);
+    background: $card-bg;
+  }
+
+  &:hover {
+    border-color: rgba($text-color-primary, 0.6);
+  }
+
+  @include mobile-adjustments {
+    padding: $spacing-sm;
+    font-size: 0.95rem;
+  }
+}
+
+.form-input[type="textarea"],
+textarea.form-input {
+  min-height: 120px;
+  line-height: 1.5;
+
+  @include mobile-adjustments {
+    min-height: 100px;
+  }
+}
+
+.error-message {
+  color: #e63946;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: $spacing-xs;
+  padding-left: $spacing-xs;
+}
+
+.submit-btn {
+  @extend .action-btn; // Reuse all styles from .action-btn
+
+  justify-content: center;
+  font-size: 1.1rem;
+  margin-top: $spacing-sm;
+  font-family: $font-family-primary;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba($primary-color, 0.3);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  @include mobile-adjustments {
+    width: 100%;
+    padding: $spacing-md;
+    font-size: 1rem;
+  }
+}

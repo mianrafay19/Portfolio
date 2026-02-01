@@ -1,0 +1,45 @@
+<header class="header" [class.scrolled]="isScrolled">
+  <div class="header-container">
+    <!-- Centered Desktop Navigation -->
+    <nav class="header-nav">
+      <ul class="nav-list">
+        @for(nav of navlinks; track nav.name) {
+        <li class="nav-item">
+          <a class="nav-link" href="{{ nav.link }}">{{ nav.name }}</a>
+        </li>
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Mobile Bottom Navigation -->
+<nav class="mobile-bottom-nav">
+  <ul class="mobile-bottom-nav-list">
+    @for(nav of navlinks; track nav.name; let i = $index) {
+    <li class="mobile-bottom-nav-item">
+      <a class="mobile-bottom-nav-link" href="{{ nav.link }}">
+        @if(i === 0) {
+          <i class="fas fa-home nav-icon"></i>
+          <span class="nav-label">Home</span>
+        } @else if(i === 1) {
+          <i class="fas fa-user-circle nav-icon"></i>
+          <span class="nav-label">About</span>
+        } @else if(i === 2) {
+          <i class="fas fa-graduation-cap nav-icon"></i>
+          <span class="nav-label">Education</span>
+        } @else if(i === 3) {
+          <i class="fas fa-code nav-icon"></i>
+          <span class="nav-label">Skills</span>
+        } @else if(i === 4) {
+          <i class="fas fa-laptop-code nav-icon"></i>
+          <span class="nav-label">Projects</span>
+        } @else if(i === 5) {
+          <i class="fas fa-paper-plane nav-icon"></i>
+          <span class="nav-label">Contact</span>
+        }
+      </a>
+    </li>
+    }
+  </ul>
+</nav>

@@ -1,0 +1,55 @@
+<section id="skills">
+  <div class="skills-container">
+    <h2 class="section-title">Skills</h2>
+
+    <app-tabs [labels]="data.tabs.skills">
+      <!-- Frontend -->
+      <ng-template #tabPanel>
+        <div class="skills-grid">
+          @for (skill of data.skills.frontend; track $index) {
+            <div class="skill-card" [title]="skill" [style.--skill-index]="$index">
+              <div class="skill-hexagon">
+                <div class="skill-content">
+                  <i [class]="getSkillIcon(skill)"></i>
+                  <span class="skill-name">{{ skill }}</span>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </ng-template>
+
+      <!-- Backend -->
+      <ng-template #tabPanel>
+        <div class="skills-grid">
+          @for (skill of data.skills.backend; track $index) {
+            <div class="skill-card" [title]="skill" [style.--skill-index]="$index">
+              <div class="skill-hexagon">
+                <div class="skill-content">
+                  <i [class]="getSkillIcon(skill)"></i>
+                  <span class="skill-name">{{ skill }}</span>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </ng-template>
+
+      <!-- Tools -->
+      <ng-template #tabPanel>
+        <div class="skills-grid">
+          @for (skill of data.skills.tools; track $index) {
+            <div class="skill-card" [title]="skill" [style.--skill-index]="$index">
+              <div class="skill-hexagon">
+                <div class="skill-content">
+                  <i [class]="getSkillIcon(skill)"></i>
+                  <span class="skill-name">{{ skill }}</span>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </ng-template>
+    </app-tabs>
+  </div>
+</section>

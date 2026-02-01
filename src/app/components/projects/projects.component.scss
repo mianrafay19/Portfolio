@@ -1,0 +1,424 @@
+@use "../../styles/imports" as *;
+
+#projects {
+  @extend %section-layout;
+  position: relative;
+  overflow: hidden;
+  font-family: $font-family-primary;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at 25% 25%,
+        rgba($primary-color, 0.03) 0%,
+        transparent 35%
+      ),
+      radial-gradient(
+        circle at 75% 75%,
+        rgba($accent-color, 0.02) 0%,
+        transparent 35%
+      );
+    z-index: 0;
+    animation: floatingParticles 8s infinite ease-in-out;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 4px;
+    height: 4px;
+    background: rgba($accent-color, 0.4);
+    border-radius: 50%;
+    animation: float 6s infinite ease-in-out;
+    z-index: 0;
+  }
+}
+
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: $spacing-xl;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+  position: relative;
+  z-index: 1;
+
+  @include tablet-adjustments {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    gap: $spacing-lg;
+    padding: 0 $spacing-md;
+  }
+
+  @include mobile-adjustments {
+    padding: 0 $spacing-sm;
+    gap: $spacing-lg;
+    grid-template-columns: minmax(300px, 1fr);
+    
+    .project-card {
+      margin: 0 auto;         // center card
+      max-width: 90%;         // leave space at edges
+    }
+    //   @include xs-adjustments {
+    // padding: 0 $spacing-xs;   // even tighter padding
+    // gap: $spacing-md;
+
+    // .project-card {
+    //   margin: 0 auto;
+    //   max-width: 85%;         // smaller screens, more gap
+    // }}
+  }
+  
+}
+
+.project-card {
+  border-radius: 12px;
+  overflow: hidden;
+  background: $card-bg;
+  border: 2px solid $card-border;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  animation: skillCardReveal 0.8s ease-out forwards;
+
+  display: flex;
+  flex-direction: column; // ensure actions stick to bottom
+
+  &:nth-child(1) { animation-delay: 0.1s; }
+  &:nth-child(2) { animation-delay: 0.2s; }
+  &:nth-child(3) { animation-delay: 0.3s; }
+  &:nth-child(4) { animation-delay: 0.4s; }
+  &:nth-child(5) { animation-delay: 0.5s; }
+  &:nth-child(6) { animation-delay: 0.6s; }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(
+      45deg,
+      rgba($primary-color, 0.3),
+      rgba($accent-color, 0.3),
+      rgba($primary-color, 0.3)
+    );
+    border-radius: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    background: linear-gradient($card-bg, $card-bg) padding-box,
+      #{$gradient-main} border-box;
+    border: 3px solid transparent;
+
+    &::before {
+      opacity: 1;
+      animation: borderPulse 2s infinite ease-in-out;
+    }
+
+    .project-image img {
+      transform: scale(1.05);
+    }
+
+    .project-overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-content {
+      .project-title {
+        transform: translateX(2px);
+      }
+
+      .tech-badge {
+        transform: translateY(-1px);
+        background: rgba($primary-color, 0.15);
+      }
+    }
+  }
+}
+
+.project-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: $background-color-lighter;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out 0.3s forwards;
+  }
+
+  .project-overlay {
+    position: absolute;
+    top: $spacing-md;
+    right: $spacing-md;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    .project-timeline {
+      background: $accent-color;
+      backdrop-filter: blur(12px);
+      padding: $spacing-xs $spacing-sm;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      color: $primary-color;
+      font-weight: 600;
+      border: 1px solid rgba($border-color, 0.3);
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      &:hover::before {
+        left: 100%;
+      }
+    }
+  }
+}
+
+.project-content {
+  padding: $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  flex: 1; // fill remaining height
+
+  .project-title {
+    color: $text-color-primary;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: $spacing-sm;
+    line-height: 1.4;
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: textSlideIn 0.6s ease-out 0.4s forwards;
+  }
+
+  .description-wrapper {
+    position: relative;
+    display: block;
+    margin-bottom: $spacing-md;
+
+    .project-description {
+      color: $text-color-secondary;
+      line-height: 1.5;
+      font-size: 0.9rem;
+      margin: 0;
+      opacity: 0;
+      animation: textSlideIn 0.6s ease-out 0.5s forwards;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    &.expanded .project-description {
+      -webkit-line-clamp: unset;
+      line-clamp: unset;
+      display: block;
+    }
+
+    .see-toggle {
+      color: $text-color-primary;
+      cursor: pointer;
+      font-weight: 500;
+      margin-top: 4px;
+      display: inline-block;
+      text-decoration: none;
+    }
+  }
+
+  .project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+    margin-bottom: $spacing-lg;
+    opacity: 0;
+    animation: slideInUp 0.6s ease-out 0.6s forwards;
+
+    .tech-badge {
+      background: rgba($primary-color, 0.1);
+      color: $primary-color;
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+
+      // auto stagger for ANY number of badges
+      @for $i from 1 through 50 {
+        &:nth-child(#{$i}) {
+          animation: iconFloat 0.5s ease-out #{0.6 + $i * 0.1}s forwards;
+        }
+      }
+
+      &:hover {
+        transform: translateY(-2px) scale(1.05);
+        background: rgba($primary-color, 0.15);
+        box-shadow: 0 2px 8px rgba($primary-color, 0.2);
+      }
+
+      &:nth-child(n) { animation-fill-mode: forwards; }
+    }
+  }
+
+  .project-actions {
+    display: flex;
+    gap: $spacing-sm;
+    margin-top: auto; // stick to bottom
+    opacity: 0;
+    animation: slideInUp 0.6s ease-out 0.7s forwards;
+  }
+}
+
+/* Mobile adjustments */
+@include mobile-adjustments {
+  .project-card {
+    .project-image {
+      height: 180px;
+    }
+
+    .project-content {
+      padding: $spacing-md;
+
+      .project-title {
+        font-size: 1.1rem;
+      }
+
+      .project-tech {
+        margin-bottom: $spacing-md;
+
+        .tech-badge {
+          &:nth-child(n) {
+            animation: fadeIn 0.4s ease-out forwards;
+            opacity: 0;
+          }
+        }
+      }
+
+      .project-actions {
+        flex-direction: column;
+        gap: $spacing-xs;
+        margin-top: auto;
+        padding-bottom: $spacing-sm; // safe space from screen edge
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-card {
+      animation: fadeIn 0.3s ease-out forwards;
+
+      * {
+        animation: none !important;
+        transition-duration: 0.1s !important;
+      }
+    }
+  }
+}
+
+/* Dark mode support */
+.dark-mode {
+  #projects {
+    &::before {
+      background: radial-gradient(
+          circle at 25% 25%,
+          rgba($primary-color, 0.05) 0%,
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at 75% 75%,
+          rgba($accent-color, 0.04) 0%,
+          transparent 35%
+        );
+    }
+  }
+
+  .project-card {
+    &::before {
+      background: linear-gradient(
+        45deg,
+        rgba($primary-color, 0.4),
+        rgba($accent-color, 0.4),
+        rgba($primary-color, 0.4)
+      );
+    }
+
+    .project-overlay .project-timeline {
+      background: rgba($card-bg, 0.95);
+      color: rgba(255, 255, 255, 0.9);
+      border-color: rgba(255, 255, 255, 0.2);
+
+      &::before {
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+      }
+    }
+
+    .project-content .project-actions .action-btn-outline {
+      border-color: rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.9);
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: $accent-color;
+        color: $accent-color;
+        box-shadow: 0 0 20px rgba($accent-color, 0.3);
+      }
+    }
+  }
+}
+
+/* Animations */
+.project-card.animate-in {
+  animation: skillCardReveal 0.8s ease-out forwards;
+}
+
+.projects-loading {
+  .project-card {
+    background: linear-gradient(
+      90deg,
+      $card-bg 25%,
+      rgba($card-bg, 0.8) 50%,
+      $card-bg 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite ease-in-out;
+  }
+}

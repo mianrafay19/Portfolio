@@ -1,0 +1,82 @@
+<section id="contact" class="contact-section">
+  <div class="contact-container">
+    <div class="contact-header">
+      <h2 class="section-title">Get in Touch</h2>
+      <p class="section-description">
+        I'd love to hear about your project or just chat about possibilities.
+      </p>
+    </div>
+
+    <div class="contact-form-wrapper">
+      <form
+        [formGroup]="contactForm"
+        (ngSubmit)="onSubmit()"
+        class="contact-form"
+      >
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input
+            formControlName="name"
+            type="text"
+            id="name"
+            class="form-input"
+            placeholder="Enter your full name"
+            required
+          />
+          @if (showInputError('name')) {
+            <div class="error-message">
+              {{ getErrorMessage("name") }}
+            </div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            formControlName="email"
+            type="email"
+            id="email"
+            class="form-input"
+            placeholder="your.email@example.com"
+            required
+          />
+          @if (showInputError('email')) {
+            <div class="error-message">
+              {{ getErrorMessage("email") }}
+            </div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="message">Your Message</label>
+          <textarea
+            formControlName="message"
+            id="message"
+            class="form-input"
+            placeholder="Tell me about your project or what you'd like to discuss..."
+            rows="5"
+            required
+          ></textarea>
+          @if (showInputError('message')) {
+            <div class="error-message">
+              {{ getErrorMessage("message") }}
+            </div>
+          }
+        </div>
+
+        <button
+          type="submit"
+          class="submit-btn"
+          [disabled]="contactForm.invalid || isLoading"
+        >
+          @if (!isLoading) {
+            Send Message
+          }
+          @if (isLoading) {
+            Sending...
+          }
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

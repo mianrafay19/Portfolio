@@ -1,0 +1,50 @@
+<section id="projects">
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-container">
+    @for (project of projects; track project.name) {
+    <div class="project-card">
+      <!-- Project Image -->
+      <div class="project-image">
+        <img [src]="project.image" [alt]="project.name" loading="lazy" />
+        <div class="project-overlay">
+          <span class="project-timeline">{{ project.timeline }}</span>
+        </div>
+      </div>
+
+      <!-- Project Content -->
+      <div class="project-content">
+        <h3 class="project-title">{{ project.name }}</h3>
+        <!-- Description wrapper -->
+        <div class="description-wrapper" [class.expanded]="project.expanded">
+          <p class="project-description">
+            {{ project.description }}
+          </p>
+
+          <!-- Inline See more / See less -->
+          <span class="see-toggle" (click)="toggleDescription(project)">
+            {{ project.expanded ? " See less" : "See more" }}
+          </span>
+        </div>
+        @if (project.technologies && project.technologies.length > 0) {
+        <div class="project-tech">
+          @for (tech of project.technologies; track tech) {
+          <span class="tech-badge">{{ tech }}</span>
+          }
+        </div>
+        }
+
+        <div class="project-actions">
+          <a [href]="project.link" target="_blank" class="action-btn">
+            View Project
+          </a>
+          @if (project.github_link) {
+          <a [href]="project.github_link" target="_blank" class="action-btn">
+            GitHub
+          </a>
+          }
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</section>

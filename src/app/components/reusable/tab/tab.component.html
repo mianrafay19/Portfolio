@@ -1,0 +1,25 @@
+<div class="main-card">
+  <!-- Navigation Tabs -->
+  <div class="tab-navigation">
+    @for (tab of labels; track $index) {
+      <button
+        class="tab-btn"
+        [class.active]="activeIndex === $index"
+        (click)="setActiveTab($index)">
+        @if (tab.icon) {
+          <span class="tab-icon"><i [class]="tab.icon"></i></span>
+        }
+        {{ tab.label }}
+      </button>
+    }
+  </div>
+
+  <!-- Tab Content -->
+  <div class="tab-content">
+    @for (panel of tabPanels.toArray(); track $index) {
+      <div class="tab-panel" [class.active]="activeIndex === $index">
+        <ng-container *ngTemplateOutlet="panel"></ng-container>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,74 @@
+<section id="about" class="about-section">
+  <div class="about-container">
+    <h2 class="section-title">About Me</h2>
+
+    <app-tabs [labels]="data.tabs.about">
+      <!-- My Story -->
+      <ng-template #tabPanel>
+        <div class="story-section">
+          <div class="story-header">
+            <h3 class="profile-name">{{ data.name }}</h3>
+            <p class="profile-role">{{ data.role }}</p>
+          </div>
+          <p class="story-text">{{ data.about.description }}</p>
+          <button class="action-btn" (click)="downloadResume(data.resume)">
+            <i class="fas fa-file-download btn-icon"></i>
+            Download Resume
+          </button>
+          <!-- <button class="action-btn" (click)="viewResume(data.resume)">
+            <i class="fas fa-file-pdf btn-icon"></i>
+            View Resume
+          </button> -->
+        </div>
+      </ng-template>
+
+      <!-- What Drives Me -->
+      <ng-template #tabPanel>
+        <div class="passions-grid">
+          @for (passion of data.about.passions; track passion.key) {
+          <div class="passion-item" [attr.data-key]="passion.key">
+            <div class="passion-icon">
+              @if (passion.key === 'architecture') {
+              <i class="fas fa-drafting-compass"></i>
+              } @if (passion.key === 'innovation') {
+              <i class="fas fa-lightbulb"></i>
+              } @if (passion.key === 'ux') {
+              <i class="fas fa-laptop-code"></i>
+              } @if (passion.key === 'problem-solving') {
+              <i class="fas fa-puzzle-piece"></i>
+              }
+            </div>
+            <div class="passion-content">
+              <h4>{{ passion.title }}</h4>
+              <p>{{ passion.description }}</p>
+            </div>
+          </div>
+          }
+        </div>
+      </ng-template>
+
+      <!-- Beyond Code -->
+      <ng-template #tabPanel>
+        <div class="personal-content">
+          <div class="interests-section">
+            <h4 class="section-subtitle">When I'm Not Coding</h4>
+            <div class="interests-grid">
+              @for (interest of data.about.interests; track $index) {
+              <div class="interest-tag">{{ interest }}</div>
+              }
+            </div>
+          </div>
+
+          <div class="languages-section">
+            <h4 class="section-subtitle">Languages I Speak</h4>
+            <div class="languages-grid">
+              @for (language of data.languages; track $index) {
+              <div class="language-tag">{{ language }}</div>
+              }
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </app-tabs>
+  </div>
+</section>

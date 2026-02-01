@@ -1,0 +1,142 @@
+@use "../../../styles/imports" as *;
+
+// ============================
+// MAIN CARD
+// ============================
+.main-card {
+  background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+    #{$gradient-main} border-box;
+  border: 2px solid transparent;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: $card-shadow;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $card-hover-shadow;
+  }
+
+  @include mobile-adjustments {
+    border-radius: 16px;
+  }
+}
+
+// ============================
+// TAB NAVIGATION
+// ============================
+.tab-navigation {
+  display: flex;
+  background: rgba(var(--primary-color-rgb), 0.05);
+  border-bottom: 1px solid $card-border;
+
+  @include mobile-adjustments {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+// ============================
+// TAB BUTTON
+// ============================
+.tab-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-lg;
+  border: none;
+  background: transparent;
+  color: $text-color-secondary;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  min-width: fit-content;
+  white-space: nowrap;
+
+  @include mobile-adjustments {
+    padding: $spacing-sm $spacing-md;
+    font-size: 0.9rem;
+    gap: $spacing-xs;
+  }
+
+  .tab-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include mobile-adjustments {
+      width: 18px;
+      height: 18px;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      fill: currentColor;
+    }
+  }
+
+  &:hover {
+    background: rgba(var(--primary-color-rgb), 0.08);
+    color: $primary-color;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    width: 60%;
+    height: 3px;
+    background: $gradient-main;
+    border-radius: 2px 2px 0 0;
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  &.active {
+    background: transparent;
+    color: $primary-color;
+
+    &::after {
+      transform: translateX(-50%) scaleX(1);
+      opacity: 1;
+    }
+  }
+}
+
+// ============================
+// TAB CONTENT
+// ============================
+.tab-content {
+  padding: $spacing-xl;
+  min-height: 400px;
+
+  @include mobile-adjustments {
+    padding: $spacing-lg;
+  }
+}
+
+.tab-panel {
+  display: none;
+  animation: fadeIn 0.3s ease-in;
+
+  &.active {
+    display: block;
+  }
+}

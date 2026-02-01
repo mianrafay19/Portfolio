@@ -1,0 +1,329 @@
+// Shared Components SCSS
+// This file contains common styles used across multiple components
+@use "variables" as *;
+
+// ============================
+// Buttons
+// ============================
+
+// Base gradient button (shared styles)
+%gradient-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  background: $gradient-main;
+  color: white;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  text-decoration: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: $gradient-main-hover;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: inherit;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  @include mobile-adjustments {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+// Action button
+.action-btn {
+  @extend %gradient-btn;
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-xl;
+  border-radius: 50px;
+  font-size: 1rem;
+  box-shadow: 0 4px 15px rgba($primary-color, 0.3);
+
+  &:hover {
+    box-shadow: 0 6px 20px rgba($primary-color, 0.4);
+  }
+}
+
+// View button
+.view-btn {
+  @extend %gradient-btn;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  box-shadow: 0 3px 10px rgba($primary-color, 0.3);
+
+  i {
+    font-size: 0.9rem;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba($primary-color, 0.4);
+  }
+}
+
+.item-action {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+// ============================
+// SECTION LAYOUT
+// ============================
+
+.section-title {
+  text-align: center;
+  font-size: $h1-font-size;
+  margin-bottom: $spacing-xl;
+  font-weight: 700;
+  color: $text-color-primary;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -$spacing-sm;
+    transform: translateX(-50%);
+    width: 72px;
+    height: 3px;
+    background: $gradient-main-hover;
+    border-radius: 2px;
+  }
+}
+
+%section-layout {
+  padding: $spacing-xl 0;
+  background-color: $background-color-light;
+  color: $text-color-primary;
+}
+
+%section-container {
+  max-width: $breakpoint-large;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+  @include mobile-adjustments {
+    padding: 0 $spacing-sm;
+  }
+}
+
+// ============================
+// CONTENT ITEMS
+// ============================
+%content-item {
+  background: rgba(var(--primary-color-rgb), 0.02);
+  border: 1px solid $card-border;
+  border-radius: 16px;
+  padding: $spacing-lg;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: $gradient-main;
+    border-radius: 0 2px 2px 0;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    background: rgba(var(--primary-color-rgb), 0.05);
+    box-shadow: $card-shadow;
+  }
+}
+
+// ============================
+// ITEM HEADERS
+// ============================
+%item-header {
+  display: flex;
+  gap: $spacing-md;
+  align-items: flex-start;
+  margin-bottom: $spacing-md;
+
+  @include mobile-adjustments {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+%item-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: $gradient-main;
+
+  i {
+    font-size: 1.5rem;
+    color: white;
+  }
+
+  @include mobile-adjustments {
+    width: 50px;
+    height: 50px;
+
+    i {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+%item-info {
+  flex: 1;
+  min-width: 0;
+
+  .item-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: $text-color-primary;
+    margin: 0 0 $spacing-xs 0;
+    line-height: 1.3;
+
+    @include mobile-adjustments {
+      font-size: 1.2rem;
+    }
+  }
+
+  .item-subtitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $primary-color;
+    margin: 0 0 $spacing-sm 0;
+
+    @include mobile-adjustments {
+      font-size: 1rem;
+    }
+  }
+
+  .item-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+
+    @include mobile-adjustments {
+      flex-direction: column;
+      gap: $spacing-xs;
+      justify-content: center;
+    }
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    color: $text-color-secondary;
+    font-size: 0.9rem;
+
+    i {
+      color: $accent-color;
+      font-size: 0.8rem;
+      width: 12px;
+    }
+  }
+}
+
+// ============================
+// GRIDS
+// ============================
+%content-grid {
+  display: grid;
+  gap: $spacing-lg;
+
+  @include tablet-adjustments {
+    grid-template-columns: 1fr;
+    gap: $spacing-xl;
+  }
+}
+
+// ============================
+// ANIMATIONS
+// ============================
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ============================
+// UTILITY MIXINS
+// ============================
+@mixin staggered-animation($max-items: 20, $delay: 0.1s) {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+
+  @for $i from 1 through $max-items {
+    &:nth-child(#{$i}) {
+      animation-delay: $i * $delay;
+    }
+  }
+}
+
+// ============================
+// CONTENT STYLING
+// ============================
+%item-description {
+  color: $text-color-secondary;
+  line-height: 1.6;
+  margin: $spacing-md 0 0 0;
+  padding-top: $spacing-md;
+  border-top: 1px dashed rgba($border-color, 0.3);
+}
+
+%content-subtitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: $primary-color;
+  margin: 0 0 $spacing-sm 0;
+}
+
+// ============================
+// RESPONSIVE UTILITIES
+// ============================
+@mixin section-mobile-adjustments {
+  @include mobile-adjustments {
+    padding: $spacing-lg 0;
+
+    .section-container {
+      padding: 0 $spacing-sm;
+    }
+  }
+}

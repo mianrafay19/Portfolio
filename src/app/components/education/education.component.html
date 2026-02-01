@@ -1,0 +1,170 @@
+<section id="education" class="education-section">
+  <div class="education-container">
+    <h2 class="section-title">Education & Experience</h2>
+
+    <app-tabs [labels]="data.tabs.education">
+      <!-- Education -->
+      <ng-template #tabPanel>
+        <div class="content-grid">
+          @for (edu of data.educations; track $index) {
+            <div class="education-item" [style.--item-index]="$index">
+              <div class="item-header">
+                <div class="item-icon"><i class="fas fa-university"></i></div>
+                <div class="item-info">
+                  <h3 class="item-title">{{ edu.degree }}</h3>
+                  <p class="item-subtitle">{{ edu.institution }}</p>
+                  <div class="item-meta">
+                    <span class="meta-item">
+                      <i class="fas fa-calendar-alt"></i>{{ edu.timeline }}
+                    </span>
+                    <span class="meta-item">
+                      <i class="fas fa-map-marker-alt"></i>{{ edu.location }}
+                    </span>
+                    @if (edu.cgpa) {
+                      <span class="meta-item">
+                        <i class="fas fa-star"></i>CGPA: {{ edu.cgpa }}
+                      </span>
+                    }
+                  </div>
+                </div>
+              </div>
+
+              @if (edu.description) {
+                <p class="item-description">{{ edu.description }}</p>
+              }
+
+              <div class="item-action">
+                @if (edu.document) {
+                  <button
+                    class="view-btn"
+                    (click)="viewDocument(edu.document)"
+                  >
+                    <i class="fas fa-file-pdf"></i> View Degree
+                  </button>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </ng-template>
+
+      <!-- Experience -->
+      <ng-template #tabPanel>
+        <div class="content-grid">
+          @for (exp of data.experiences; track $index) {
+            <div class="experience-item" [style.--item-index]="$index">
+              <div class="item-header">
+                <div class="item-icon"><i class="fas fa-id-badge"></i></div>
+                <div class="item-info">
+                  <h3 class="item-title">{{ exp.role }}</h3>
+                  <p class="item-subtitle">{{ exp.company }}</p>
+                  <div class="item-meta">
+                    <span class="meta-item">
+                      <i class="fas fa-calendar-alt"></i>{{ exp.timeline }}
+                    </span>
+                    <span class="meta-item">
+                      <i class="fas fa-map-marker-alt"></i>{{ exp.location }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="item-content">
+                @if (exp.responsibilities?.length) {
+                  <div class="responsibilities-section">
+                    <h4 class="content-subtitle">Key Responsibilities</h4>
+                    <div class="responsibilities-grid">
+                      @for (resp of exp.responsibilities; track $index) {
+                        <div
+                          class="responsibility-item"
+                          [style.--resp-index]="$index"
+                        >
+                          <i class="fas fa-check-circle"></i>
+                          <span>{{ resp }}</span>
+                        </div>
+                      }
+                    </div>
+                  </div>
+                }
+
+                @if (exp.technologies?.length) {
+                  <div class="technologies-section">
+                    <h4 class="content-subtitle">Technologies Used</h4>
+                    <div class="tech-tags">
+                      @for (tech of exp.technologies; track $index) {
+                        <span class="tech-tag" [style.--tech-index]="$index">
+                          {{ tech }}
+                        </span>
+                      }
+                    </div>
+                  </div>
+                }
+              </div>
+
+              <div class="item-action">
+                @if (exp.document) {
+                  <button
+                    class="view-btn"
+                    (click)="viewDocument(exp.document)"
+                  >
+                    <i class="fas fa-file-pdf"></i> View Experience
+                  </button>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </ng-template>
+
+      <!-- Courses -->
+      <ng-template #tabPanel>
+        <div class="content-grid">
+          @for (course of data.courses; track $index) {
+            <div class="course-item" [style.--item-index]="$index">
+              <div class="item-header">
+                <div class="item-icon"><i class="fas fa-book-open"></i></div>
+                <div class="item-info">
+                  <h3 class="item-title">{{ course.name }}</h3>
+                  <p class="item-subtitle">{{ course.institution }}</p>
+                  <div class="item-meta">
+                    <span class="meta-item">
+                      <i class="fas fa-calendar-alt"></i>{{ course.timeline }}
+                    </span>
+                    <span class="meta-item">
+                      <i class="fas fa-map-marker-alt"></i>{{ course.location }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <p class="item-description">{{ course.description }}</p>
+
+              @if (course.certificate_link) {
+                <div class="course-actions">
+                  <a
+                    [href]="course.certificate_link"
+                    target="_blank"
+                    class="certificate-btn"
+                  >
+                    <i class="fas fa-external-link-alt"></i> View Certificate
+                  </a>
+                </div>
+              }
+
+              <div class="item-action">
+                @if (course.document) {
+                  <button
+                    class="view-btn"
+                    (click)="viewDocument(course.document)"
+                  >
+                    <i class="fas fa-file-pdf"></i> View Certificate
+                  </button>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </ng-template>
+    </app-tabs>
+  </div>
+</section>

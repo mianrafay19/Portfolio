@@ -1,0 +1,120 @@
+@use "./themes" as *;
+
+
+// SCSS variables that map to CSS variables
+$primary-color: var(--primary-color);
+$secondary-color: var(--secondary-color);
+$accent-color: var(--accent-color);
+$background-color: var(--background-color);
+$text-color-primary: var(--text-color-primary);
+$text-color-secondary: var(--text-color-secondary);
+$border-color: var(--border-color);
+
+// SCSS mapping
+$gradient-main: var(--gradient-main);
+$gradient-main-hover: var(--gradient-main-hover);
+$gradient-main-multi: var(--gradient-main-multi);
+
+// Card specific variables
+$card-bg: var(--card-bg);
+$card-border: var(--card-border);
+$card-shadow: var(--card-shadow);
+$card-hover-shadow: var(--card-hover-shadow);
+$card-inner-shadow: var(--card-inner-shadow);
+
+// Glass effect variables
+$glass-bg: var(--glass-bg);
+$glass-border: var(--glass-border);
+$glass-shadow: var(--glass-shadow);
+
+// Adjusted color variables
+$background-color-light: var(--background-color-light);
+$background-color-lighter: var(--background-color-lighter);
+$background-color-dark: var(--background-color-dark);
+$accent-color-light: var(--accent-color-light);
+
+// Extended Typography
+$font-family-primary: "Poppins", sans-serif;
+$font-family-secondary: "Roboto", sans-serif;
+
+// Responsive Typography
+$base-font-size: 16px;
+$h1-font-size: clamp(2rem, 5vw, 2.5rem); // Responsive clamp
+$h2-font-size: clamp(1.75rem, 4vw, 2rem);
+$h3-font-size: clamp(1.5rem, 3.5vw, 1.75rem);
+$body-font-size: 1rem;
+
+// Tightened Spacing System
+$spacing-xs: 0.25rem; // 4px
+$spacing-sm: 0.5rem; // 8px
+$spacing-md: 1rem; // 16px
+$spacing-lg: 1.5rem; // 24px
+$spacing-xl: 2rem; // 32px
+$spacing-xxl: 2.5rem; // 40px (new)
+
+// Box Shadows
+$box-shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.1);
+$box-shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.15);
+$box-shadow-strong: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+// Special Effects
+$backdrop-blur: blur(12px);
+$backdrop-blur-light: blur(6px);
+
+// Breakpoints (unchanged)
+$breakpoint-xs: 320px; // very small phonesx
+$breakpoint-mobile: 576px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 992px;
+$breakpoint-large: 1200px;
+
+// ============================
+// RESPONSIVE UTILITIES
+// ============================
+
+// Extra small devices (≤ 320px)
+@mixin xs-adjustments {
+  @media (max-width: $breakpoint-xs) {
+    @content;
+  }
+}
+
+// Mobile devices (≤ 576px)
+@mixin mobile-adjustments {
+  @media (max-width: $breakpoint-mobile) {
+    @content;
+  }
+}
+
+// Tablet devices (≤ 768px)
+@mixin tablet-adjustments {
+  @media (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin tablet-up-adjustments {
+  @media (min-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+
+// Desktop devices (≤ 992px)
+@mixin desktop-adjustments {
+  @media (max-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
+// Large desktop devices (≤ 1200px)
+@mixin large-desktop-adjustments {
+  @media (max-width: $breakpoint-large) {
+    @content;
+  }
+}
+@mixin xs-to-mobile-adjustments {
+  @media (min-width: ($breakpoint-xs + 1)) and (max-width: $breakpoint-mobile) {
+    @content;
+  }
+}

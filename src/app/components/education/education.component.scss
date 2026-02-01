@@ -1,0 +1,217 @@
+@use "../../styles/imports" as *;
+
+.education-section {
+  font-family: $font-family-primary;
+  @extend %section-layout;
+  @include section-mobile-adjustments;
+}
+
+.education-container {
+  @extend %section-container;
+  animation: slideInUp 0.8s ease-out;
+}
+
+// .education-card {
+//   @extend %main-card;
+// }
+
+/* ---------------- GRID & ITEMS ---------------- */
+.content-grid {
+  @extend %content-grid;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.education-item,
+.experience-item,
+.course-item {
+  @extend %content-item;
+  animation: fadeInLeft 0.6s ease-out
+    calc(var(--item-index, 0) * 0.08s + 0.3s) both;
+
+  @include mobile-adjustments {
+    padding: $spacing-md;
+    margin-bottom: $spacing-sm;
+  }
+}
+
+/* ---------------- ITEM HEADER ---------------- */
+.item-header {
+  @extend %item-header;
+  animation: fadeInRight 0.5s ease-out 0.2s both;
+
+  @include mobile-adjustments {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: $spacing-sm;
+  }
+}
+
+.item-icon {
+  @extend %item-icon;
+}
+
+.item-info {
+  @extend %item-info;
+
+  @include mobile-adjustments {
+    text-align: center;
+
+    .item-meta {
+      flex-direction: column;
+      gap: $spacing-xs;
+      align-items: center;
+    }
+  }
+}
+
+.item-description {
+  @extend %item-description;
+  animation: fadeInUp 0.5s ease-out 0.3s both;
+
+  @include mobile-adjustments {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}
+
+/* ---------------- EXPERIENCE SPECIFIC ---------------- */
+.item-content {
+  margin-top: $spacing-md;
+  animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+.content-subtitle {
+  @extend %content-subtitle;
+
+  @include mobile-adjustments {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+}
+
+.responsibilities-section {
+  margin-bottom: $spacing-lg;
+
+  @include mobile-adjustments {
+    margin-bottom: $spacing-md;
+  }
+}
+
+.responsibilities-grid {
+  display: grid;
+  gap: $spacing-sm;
+
+  @include mobile-adjustments {
+    gap: $spacing-xs;
+  }
+}
+
+.responsibility-item {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-sm;
+  color: $text-color-secondary;
+  line-height: 1.5;
+  animation: fadeInLeft 0.4s ease-out
+    calc(var(--resp-index, 0) * 0.05s + 0.4s) both;
+
+  @include mobile-adjustments {
+    gap: $spacing-xs;
+    font-size: 0.9rem;
+  }
+
+  i {
+    color: $accent-color;
+    font-size: 0.8rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+}
+
+.technologies-section {
+  animation: fadeInRight 0.6s ease-out 0.5s both;
+
+  .tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+
+    @include mobile-adjustments {
+      justify-content: center;
+      gap: $spacing-xs;
+    }
+
+    .tech-tag {
+      background: rgba($text-color-secondary, 0.08);
+      color: $text-color-secondary;
+      padding: $spacing-xs $spacing-sm;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border: 1px solid rgba($text-color-secondary, 0.15);
+      transition: all 0.2s ease;
+      animation: fadeInUp 0.4s ease-out
+        calc(var(--tech-index, 0) * 0.05s + 0.6s) both;
+
+      @include mobile-adjustments {
+        font-size: 0.75rem;
+        padding: $spacing-xs;
+      }
+
+      &:hover {
+        background: rgba($text-color-secondary, 0.15);
+        transform: translateY(-1px);
+      }
+    }
+  }
+}
+
+/* ---------------- COURSES SPECIFIC ---------------- */
+.course-actions {
+  margin-top: $spacing-md;
+  padding-top: $spacing-md;
+  border-top: 1px dashed rgba($border-color, 0.3);
+  animation: fadeInUp 0.5s ease-out 0.6s both;
+
+  @include mobile-adjustments {
+    text-align: center;
+  }
+}
+
+.certificate-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-sm $spacing-md;
+  background: linear-gradient(45deg, $primary-color, $accent-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba($primary-color, 0.2);
+
+  @include mobile-adjustments {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.85rem;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba($primary-color, 0.3);
+    text-decoration: none;
+  }
+
+  i {
+    font-size: 0.8rem;
+  }
+}
+
+.item-action {
+  @include mobile-adjustments {
+    text-align: center;
+  }
+}

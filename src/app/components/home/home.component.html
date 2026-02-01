@@ -1,0 +1,47 @@
+<section id="home">
+  <div class="home-container fade-in">
+    <div class="home-text">
+      <div class="greeting">👋 Hello, I'm</div>
+
+      <h1 class="name">{{ data.name }}</h1>
+
+      <h2 class="role">
+        I'm a <span class="typewriter">{{ currentRole }}</span> Developer
+      </h2>
+
+      <p class="description">
+        {{ data.description }}
+      </p>
+
+      <div class="social-links">
+        <a [href]="socialsLinks.linkedin" target="_blank" aria-label="LinkedIn" class="social-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+
+        <a [href]="socialsLinks.github" target="_blank" aria-label="GitHub" class="social-github">
+          <i class="fab fa-github"></i>
+        </a>
+
+        <a [href]="socialsLinks.email" aria-label="Email" class="social-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+
+        <a [href]="socialsLinks.phone" aria-label="Phone" class="social-phone">
+          <i class="fas fa-phone"></i>
+        </a>
+
+        <a [href]="socialsLinks.whatsapp" target="_blank" aria-label="WhatsApp" class="social-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- <div class="home-avatar">
+      <div class="avatar-frame">
+        <img [src]="data.profile_image" alt="Profile Image" class="profile-img" />
+      </div>
+    </div> -->
+    <app-avatar [profileImage]="data.profile_image"></app-avatar>
+
+  </div>
+</section>
