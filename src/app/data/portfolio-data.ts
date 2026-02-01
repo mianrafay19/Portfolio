@@ -112,13 +112,14 @@ export const portfolioData: PortfolioData = {
       // document: 'assets/BSIT.pdf', // placeholder PDF
     },
     {
-      degree: "Bachelor's in Information Technology",
-      institution: 'University of Education',
+      degree: "Bachelor's in Disaster Management",
+      institution: 'University of the Punjab',
       timeline: 'Oct 2020 – Aug 2024',
       location: 'Lahore, Pakistan',
-      cgpa: '3.06/4.0',
-      document: 'assets/pdf/BSIT.pdf', // placeholder PDF
+      cgpa: '3.10/4.0',
+      document: 'assets/pdf/BS Degree.pdf', // placeholder PDF
     },
+
   ],
 
   // COURSES
