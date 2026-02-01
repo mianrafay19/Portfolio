@@ -2,7 +2,7 @@ import { PortfolioData } from './portfolio-interfaces';
 
 export const portfolioData: PortfolioData = {
   // BASIC INFO
-  name: 'Muhammad Asad Munir',
+  name: 'Rafay Muzamil',
   profile_image: 'assets/profile/dp2.jpg',
   logo: 'assets/logo.png',
   role: '.NET Angular Developer',
